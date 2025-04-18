@@ -14,12 +14,10 @@ mongoose.connect(CONNECTION_STRING);
 const app = express();
 app.use(
   cors({
+    origin: function (origin, callback) {
+      callback(null, origin);
+    },
     credentials: true,
-    origin: [
-      process.env.NETLIFY_URL,
-      process.env.NETLIFY_URL2,
-      "http://localhost:5173",
-    ],
   })
 );
 const sessionOptions = {
